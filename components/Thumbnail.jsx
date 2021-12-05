@@ -1,8 +1,9 @@
 import React, { forwardRef } from "react";
 import Image from "next/image";
 import { ThumbUpIcon } from "@heroicons/react/outline";
+import { Badge } from "@material-ui/core";
 
-const Thumbnail = forwardRef(function Thumbnail({ result }, ref) {
+const Thumbnail = forwardRef(function Thumbnail({ result, vote_average }, ref) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
 
   return (
@@ -10,6 +11,15 @@ const Thumbnail = forwardRef(function Thumbnail({ result }, ref) {
       ref={ref}
       className="p-2 group cursor-pointer transition duration-200 ease-in transfrom sm:hover:scale-105 hover:z-50"
     >
+      <Badge
+        badgeContent={vote_average}
+        color={vote_average > 6 ? "primary" : "secondary"}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        className="left-4 top-5"
+      />
       <Image
         layout="responsive"
         src={
